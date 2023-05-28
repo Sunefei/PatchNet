@@ -1,0 +1,148 @@
+import argparse
+
+parser = argparse.ArgumentParser()
+
+# about seed and basic info
+parser.add_argument('--seed', type=int, default=42)
+parser.add_argument('--runseed', type=int, default=0)
+parser.add_argument('--device', type=int, default=0)
+
+# about dataset and dataloader
+parser.add_argument('--input_data_dir', type=str, default='')
+parser.add_argument('--dataset', type=str, default='zinc_standard_agent')
+parser.add_argument('--num_workers', type=int, default=8)
+
+# about training strategies
+parser.add_argument('--split', type=str, default='scaffold')
+parser.add_argument('--batch_size', type=int, default=256)
+parser.add_argument('--start_epoch', type=int, default=1)
+parser.add_argument('--epochs', type=int, default=100)
+parser.add_argument('--lr', type=float, default=0.001)
+parser.add_argument('--lr_scale', type=float, default=1)
+parser.add_argument('--decay', type=float, default=0)
+
+# about molecule GNN
+parser.add_argument('--gnn_type', type=str, default='gin')
+parser.add_argument('--num_layer', type=int, default=3)
+parser.add_argument('--emb_dim', type=int, default=64)
+parser.add_argument('--dropout_ratio', type=float, default=0.5)
+parser.add_argument('--graph_pooling', type=str, default='mean')
+parser.add_argument('--JK', type=str, default='last')
+parser.add_argument('--gnn_lr_scale', type=float, default=1)
+parser.add_argument('--model_3d',
+                    type=str,
+                    default='schnet',
+                    choices=['schnet'])
+# for GraphCL
+parser.add_argument('--aug_mode', type=str, default='sample')
+parser.add_argument('--aug_strength', type=float, default=0.2)
+
+# for AttributeMask
+parser.add_argument('--mask_rate', type=float, default=0.15)
+parser.add_argument('--mask_edge', type=int, default=0)
+
+# for ContextPred
+parser.add_argument('--csize', type=int, default=3)
+parser.add_argument('--contextpred_neg_samples', type=int, default=1)
+
+# for SchNet
+parser.add_argument('--num_filters', type=int, default=128)
+parser.add_argument('--num_interactions', type=int, default=6)
+parser.add_argument('--num_gaussians', type=int, default=51)
+parser.add_argument('--cutoff', type=float, default=10)
+parser.add_argument('--readout',
+                    type=str,
+                    default='mean',
+                    choices=['mean', 'add'])
+parser.add_argument('--schnet_lr_scale', type=float, default=1)
+
+# for 2D-3D Contrastive CL
+parser.add_argument('--CL_neg_samples', type=int, default=1)
+parser.add_argument('--CL_similarity_metric',
+                    type=str,
+                    default='InfoNCE_dot_prod',
+                    choices=['InfoNCE_dot_prod', 'EBM_dot_prod'])
+parser.add_argument('--T', type=float, default=0.1)
+parser.add_argument('--normalize', dest='normalize', action='store_true')
+parser.add_argument('--no_normalize', dest='normalize', action='store_false')
+parser.add_argument('--SSL_masking_ratio', type=float, default=0)
+# This is for generative SSL.
+parser.add_argument('--AE_model',
+                    type=str,
+                    default='AE',
+                    choices=['AE', 'VAE'])
+parser.set_defaults(AE_model='AE')
+
+# for 2D-3D AutoEncoder
+parser.add_argument('--AE_loss',
+                    type=str,
+                    default='l2',
+                    choices=['l1', 'l2', 'cosine'])
+parser.add_argument('--detach_target',
+                    dest='detach_target',
+                    action='store_true')
+parser.add_argument('--no_detach_target',
+                    dest='detach_target',
+                    action='store_false')
+parser.set_defaults(detach_target=True)
+
+# for 2D-3D Variational AutoEncoder
+parser.add_argument('--beta', type=float, default=1)
+
+# for 2D-3D Contrastive CL and AE/VAE
+parser.add_argument('--alpha_1', type=float, default=1)
+parser.add_argument('--alpha_2', type=float, default=1)
+
+# for 2D SSL and 3D-2D SSL
+parser.add_argument('--SSL_2D_mode', type=str, default='AM')
+parser.add_argument('--alpha_3', type=float, default=0.1)
+parser.add_argument('--gamma_joao', type=float, default=0.1)
+parser.add_argument('--gamma_joaov2', type=float, default=0.1)
+
+# about if we would print out eval metric for training data
+parser.add_argument('--eval_train', dest='eval_train', action='store_true')
+parser.add_argument('--no_eval_train', dest='eval_train', action='store_false')
+parser.set_defaults(eval_train=True)
+
+# about loading and saving
+parser.add_argument('--input_model_file', type=str, default='')
+parser.add_argument('--output_model_dir', type=str, default='saves/')
+
+# verbosity
+parser.add_argument('--verbose', dest='verbose', action='store_true')
+parser.add_argument('--no_verbose', dest='verbose', action='store_false')
+parser.set_defaults(verbose=False)
+
+parser.add_argument('--win_size', type=int, default=32)
+parser.add_argument('--token_size', type=int, default=20)
+parser.add_argument('--step', type=int, default=None)
+parser.add_argument('--for_dropout', type=float, default=0.5)
+parser.add_argument('--dropout', type=float, default=0.5)
+parser.add_argument('--gat_heads', type=int, default=3)
+parser.add_argument('--num_heads', type=int, default=3)
+parser.add_argument('--num_tokens',
+                    type=int,
+                    default=512,
+                    help='number of atom tokens (default: 512)')
+parser.add_argument('--pooling', type=str, default="mean")
+parser.add_argument('--resume', type=bool, default=False)
+
+
+parser.add_argument('--attr_ratio', type=float, default=1.0)
+parser.add_argument('--dataset_root', type=str, default='dataset/')
+
+parser.add_argument('--k', type=int, default=30)
+parser.add_argument('--sim_function',type=str, default='cosine', choices=['cosine', 'minkowski'])
+parser.add_argument('--gamma', type=float, default=0.9)
+parser.add_argument('--thresh', type=float, default=0.3)
+parser.add_argument('--sparse', type=int, default=1)
+parser.add_argument('--activation_learner', type=str, default='relu', choices=["relu", "tanh"])
+
+parser.add_argument('--local_rank', default=-1, type=int,
+                    help='node rank for distributed training')
+parser.add_argument('--pretrain_dataset', type=str, default='')
+parser.add_argument('--freeze', type=bool, default=False)
+parser.add_argument('--train_ratio', type=float, nargs='+', default=[0.1, 0.1, 0.8])
+parser.add_argument('--gnn_dropout', type=float, default=0.2)
+args = parser.parse_args()
+print('arguments\t', args)
