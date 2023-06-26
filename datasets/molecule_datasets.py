@@ -267,7 +267,7 @@ class MoleculeDataset(InMemoryDataset):
             if labels.ndim == 1:
                 labels = np.expand_dims(labels, axis=1)
             for i in range(len(smiles_list)):
-                print(i)
+                # print(i)
                 rdkit_mol = rdkit_mol_objs[i]
                 if rdkit_mol is None:
                     continue
@@ -290,7 +290,7 @@ class MoleculeDataset(InMemoryDataset):
             smiles_list = list(input_df['smiles'])
 
             for i in range(len(smiles_list)):
-                print(i)
+                # print(i)
                 s = smiles_list[i]
                 # each example contains a single species
                 try:
@@ -367,7 +367,7 @@ class MoleculeDataset(InMemoryDataset):
 
             print('processing')
             for i in range(len(rdkit_mol_objs)):
-                print(i)
+                # print(i)
                 rdkit_mol = rdkit_mol_objs[i]
                 if rdkit_mol is not None:
                     # # convert aromatic bonds to double bonds
@@ -574,7 +574,7 @@ class MoleculeFingerprintDataset(data.Dataset):
                 _load_chembl_with_labels_dataset(os.path.join(self.root, 'raw'))
             print('processing')
             for i in range(len(rdkit_mol_objs)):
-                # print(i)
+                # # print(i)
                 rdkit_mol = rdkit_mol_objs[i]
                 if rdkit_mol is not None:
                     # # convert aromatic bonds to double bonds
@@ -600,7 +600,7 @@ class MoleculeFingerprintDataset(data.Dataset):
                 _load_tox21_dataset(os.path.join(self.root, 'raw/tox21.csv'))
             print('processing')
             for i in range(len(smiles_list)):
-                # print(i)
+                # # print(i)
                 rdkit_mol = rdkit_mol_objs[i]
                 fp_arr = create_circular_fingerprint(
                     rdkit_mol, self.radius, self.size, self.chirality)
@@ -615,7 +615,7 @@ class MoleculeFingerprintDataset(data.Dataset):
                 _load_hiv_dataset(os.path.join(self.root, 'raw/HIV.csv'))
             print('processing')
             for i in range(len(smiles_list)):
-                # print(i)
+                # # print(i)
                 rdkit_mol = rdkit_mol_objs[i]
                 # # convert aromatic bonds to double bonds
                 fp_arr = create_circular_fingerprint(
@@ -1011,7 +1011,7 @@ def _load_chembl_with_labels_dataset(root_path):
     preprocessed_rdkitArr = []
     print('preprocessing')
     for i in range(len(rdkitArr)):
-        print(i)
+        # print(i)
         m = rdkitArr[i]
         if m is None:
             preprocessed_rdkitArr.append(None)

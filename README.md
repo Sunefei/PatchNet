@@ -5,7 +5,7 @@ Implementation of "Foundation Model for Graph Pre-training"
 
 - python version = `3.7.12`
 - Environment Construction:
-```conda env create --file envname.yml```
+```conda env create --file F4G.yml```
 - Mole-BERT is needed, so please refer to [here](https://github.com/junxia97/Mole-BERT) for detailed information.
 
 ## Pre-training and fine-tuning
@@ -15,10 +15,15 @@ Implementation of "Foundation Model for Graph Pre-training"
 python vqvae.py
 ```
 2. Start self-supervised pre-training.
+- Multi-GPU
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node=4 main_multi.py --batch_size=256 --output_model_dir=saves/
 ```
-3. Fine-tuning
+- Single-GPU
+```
+python main_single.py --batch_size=256 --output_model_dir=saves/ --pretrain_dataset zinc
+```
+1. Fine-tuning
 ```
 python molecule_finetune.py --dataset=$dataset --input_model_file=saves/Multi_model.pth --epochs=100
 ```
@@ -26,6 +31,6 @@ python molecule_finetune.py --dataset=$dataset --input_model_file=saves/Multi_mo
 ## Reproducing results in the paper
 Our results in the paper can be reproduced using a random seed ranging from 0 to 9 with scaffold splitting. 
 
-## Reference
+<!-- ## Reference -->
 
 
