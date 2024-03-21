@@ -1,5 +1,5 @@
-# Fondation4Graph
-Implementation of "Foundation Model for Graph Pre-training"
+# UniNet
+Implementation of "A Graph isWorth 32 Bits: Towards Graph Foundation Model" which is submitted to KDD'24
 
 ## Installation
 
