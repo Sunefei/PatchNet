@@ -1,5 +1,8 @@
 # UniNet
-Implementation of "A Graph isWorth 32 Bits: Towards Graph Foundation Model" which is submitted to KDD'24
+Implementation of "Handling Feature Heterogeneity with Learnable Graph Patches" which is submitted to KDD'25
+
+## Note
+This repository is intended for review purposes only. The full version will be released upon acceptance.
 
 ## Installation
 
