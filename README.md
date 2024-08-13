@@ -1,4 +1,4 @@
-# UniNet
+# PatchNet
 Implementation of "Handling Feature Heterogeneity with Learnable Graph Patches" which is submitted to KDD'25
 
 ## Note
