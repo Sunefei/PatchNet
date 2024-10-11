@@ -1,6 +1,9 @@
 # PatchNet
 Implementation of "Handling Feature Heterogeneity with Learnable Graph Patches" which is submitted to KDD'25
 
+# Patching Process
+Please see [Patching](Patching_2.pdf) for detailed visualization of extracting learnable patches.
+
 ## Note
 This repository is intended for review purposes only. The full version will be released upon acceptance.
 
