@@ -1,6 +1,21 @@
 # PatchNet
 Implementation of "Handling Feature Heterogeneity with Learnable Graph Patches" which is submitted to KDD'25
 
+## Citation
+
+If you find our work useful in your research or applications, please kindly cite:
+
+```tex
+@inproceedings{sun2025handling,
+  title={Handling Feature Heterogeneity with Learnable Graph Patches},
+  author={Sun, Yifei and Yang, Yang and Feng, Xiao and Wang, Zijun and Zhong, Haoyang and Wang, Chunping and Chen, Lei},
+  year={2025},
+  booktitle={Proceedings of the 31th ACM SIGKDD Conference on Knowledge Discovery and Data Mining},
+}
+```
+
+## The code details will be finalized within two weeks, stay tuned!
+
 # Patching Process
 Please see [Patching](Patching_2.pdf) for detailed visualization of extracting learnable patches.
 
