@@ -1,5 +1,5 @@
 # PatchNet
-Implementation of "Handling Feature Heterogeneity with Learnable Graph Patches" which is submitted to KDD'25
+Implementation of "Handling Feature Heterogeneity with Learnable Graph Patches" which is accepted by KDD' 25.
 
 ## Citation
 
