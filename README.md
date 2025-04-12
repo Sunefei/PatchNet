@@ -6,11 +6,12 @@ Implementation of "Handling Feature Heterogeneity with Learnable Graph Patches" 
 If you find our work useful in your research or applications, please kindly cite:
 
 ```tex
-@inproceedings{sun2025handling,
+@inproceedings{Sun2025HandlingFH,
   title={Handling Feature Heterogeneity with Learnable Graph Patches},
-  author={Sun, Yifei and Yang, Yang and Feng, Xiao and Wang, Zijun and Zhong, Haoyang and Wang, Chunping and Chen, Lei},
+  author={Yifei Sun and Yang Yang and Xiaojuan Feng and Zijun Wang and Haoyang Zhong and Chunping Wang and Lei Chen},
+  booktitle={Knowledge Discovery and Data Mining},
   year={2025},
-  booktitle={Proceedings of the 31th ACM SIGKDD Conference on Knowledge Discovery and Data Mining},
+  url={https://dl.acm.org/doi/10.1145/3690624.3709242}
 }
 ```
 
